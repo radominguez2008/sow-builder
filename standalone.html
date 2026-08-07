@@ -387,14 +387,18 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
   #printdoc .meta b{color:#6d6a66;font-weight:600;font-size:8pt;text-transform:uppercase;letter-spacing:.04em;display:block}
   #printdoc .empty{color:#8a8783;font-size:9.5pt}
   #printdoc .respout li em{font-size:8pt}
-  #printdoc .docfoot{margin-top:18pt;padding-top:7pt;border-top:.5pt solid var(--mortar);font-size:8.5pt;color:#6d6a66;text-align:center}
+  #printdoc .docfoot{
+    margin-top:11pt;padding-top:6pt;border-top:.5pt solid var(--mortar);
+    font-size:8.5pt;color:#6d6a66;text-align:center;
+    page-break-inside:avoid;break-inside:avoid;
+  }
   #printdoc .docfoot .tag{font-family:var(--f-head);font-weight:700;color:var(--slate);font-size:10pt;display:block;margin-bottom:2pt}
   #printdoc .doccta{
-    margin-top:10pt;padding:8pt 10pt;background:var(--conc)!important;
+    margin-top:7pt;padding:6pt 9pt;background:var(--conc)!important;
     -webkit-print-color-adjust:exact;print-color-adjust:exact;border-radius:3pt;
     display:flex;align-items:center;gap:10pt;page-break-inside:avoid;break-inside:avoid;
   }
-  #printdoc .doccta img{width:52pt;height:52pt;flex:0 0 52pt}
+  #printdoc .doccta img{width:44pt;height:44pt;flex:0 0 44pt}
   #printdoc .doccta-t b{font-family:var(--f-head);font-size:9.5pt;color:var(--slate);display:block}
   #printdoc .doccta-t span{font-size:8pt;color:#6d6a66;display:block;line-height:1.35}
 }
