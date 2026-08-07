@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scope of Work Builder — RD Contracting Solutions</title>
+<meta name="description" content="Tick the boxes. You just wrote your scope of work. A pocket tool for real estate investors from Robert Dominguez, RD Contracting Solutions, LLC.">
+<link rel="icon" href="rd-logo-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Work+Sans:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <img class="brandmark" src="rd-logo-white.png" alt="The RD Company">
+    <div class="topbar-t">
+      <h1>Scope of Work Builder</h1>
+      <p>Tick the boxes. You just wrote your scope.</p>
+    </div>
+    <button class="ghost" id="btn-reset" type="button" data-testid="button-reset">Start over</button>
+  </div>
+  <div class="goldrule"></div>
+</header>
+
+<nav class="steprail" aria-label="Steps">
+  <div class="steprail-in" id="steprail"></div>
+  <div class="bar"><span id="barfill"></span></div>
+</nav>
+
+<main id="main">
+
+  <!-- STEP 0 -->
+  <section class="step" data-step="0">
+    <div class="lede">
+      <p class="rule" id="the-rule"></p>
+      <h2>Three moves and you are done</h2>
+      <ol class="howto">
+        <li><strong>Fill in the eight facts.</strong> Address, exit strategy, bed and bath count, target ARV, target date. That is your whole project header.</li>
+        <li><strong>Work the eight buckets.</strong> Tick every line that is true for your flip. Every line is written as a finished result, not a method — that is the whole point.</li>
+        <li><strong>Hand the same sheet to every bidder.</strong> Same sheet to everyone means the numbers you get back are actually comparable.</li>
+      </ol>
+      <div class="warnbox">
+        <h3>Why this works</h3>
+        <p>Nothing in here tells your contractor <em>how</em> to build. Every line describes the house when he is finished. The second you write the method, you own the failure — and the change order that comes with it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 1 -->
+  <section class="step" data-step="1">
+    <h2 class="stitle">Your project</h2>
+    <p class="sub">Eight facts. This is the header every bidder reads first.</p>
+    <div class="fields" id="fields"></div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" data-step="2">
+    <h2 class="stitle">The eight buckets</h2>
+    <p class="sub">Tick every line that is true for your flip. Skip what does not apply. Add your own at the bottom of any bucket.</p>
+    <div id="buckets"></div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" data-step="3">
+    <h2 class="stitle">Who does what</h2>
+    <p class="sub" id="resp-hint"></p>
+    <div id="resp"></div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" data-step="4">
+    <h2 class="stitle">Allowances</h2>
+    <p class="sub" id="allow-hint"></p>
+    <div id="allow"></div>
+  </section>
+
+  <!-- STEP 5 -->
+  <section class="step" data-step="5">
+    <h2 class="stitle">Your exclusions</h2>
+    <p class="sub" id="excl-hint"></p>
+    <div id="excl"></div>
+  </section>
+
+  <!-- STEP 6 -->
+  <section class="step" data-step="6">
+    <h2 class="stitle">Money gates</h2>
+    <p class="sub" id="gate-hint"></p>
+    <div id="gates"></div>
+    <h2 class="stitle mt">The rules</h2>
+    <p class="sub" id="rule-hint"></p>
+    <div id="rules"></div>
+  </section>
+
+  <!-- STEP 7 -->
+  <section class="step" data-step="7">
+    <h2 class="stitle">Before you send this</h2>
+    <p class="sub">Seven ways a scope of work loses money. Clear all seven before it leaves your desk.</p>
+    <div id="selfcheck"></div>
+  </section>
+
+  <!-- STEP 8 -->
+  <section class="step" data-step="8">
+    <h2 class="stitle">Your scope of work</h2>
+    <p class="sub">This is what you built. Print it, copy it, or download it — then send the same one to every bidder.</p>
+    <div class="actions">
+      <button class="primary" id="btn-print" type="button" data-testid="button-print">Print / Save as PDF</button>
+      <button class="secondary" id="btn-copy" type="button" data-testid="button-copy">Copy text</button>
+      <button class="secondary" id="btn-dl" type="button" data-testid="button-download">Download .txt</button>
+      <span class="copied" id="copied" hidden>Copied</span>
+    </div>
+    <div id="output" class="output" data-testid="text-output"></div>
+  </section>
+
+</main>
+
+<footer class="navbar">
+  <div class="navbar-in">
+    <button class="secondary" id="btn-back" type="button" data-testid="button-back">Back</button>
+    <span class="count" id="count"></span>
+    <button class="primary" id="btn-next" type="button" data-testid="button-next">Next</button>
+  </div>
+  <div class="ctabar">
+    <div class="ctabar-in">
+      <span class="cta-tag">Built with the end in mind.</span>
+      <span class="cta-links">
+        <a href="https://www.therdcompany.com" target="_blank" rel="noopener noreferrer" data-testid="link-website">therdcompany.com</a>
+        <span class="cta-dot">&middot;</span>
+        <a href="https://www.instagram.com/dominguezrobert" target="_blank" rel="noopener noreferrer" data-testid="link-instagram">@dominguezrobert</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- print-only document -->
+<div id="printdoc" aria-hidden="true"></div>
+
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
