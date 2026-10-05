@@ -10,7 +10,7 @@ A free checkbox tool for real estate investors, by
 > The investor owns WHAT and WHY. The contractor owns HOW.
 > Write HOW, and you own the failure.
 
-Tick the boxes that are true for your flip. Every line is written as a
+Check the boxes that are true for your flip. Every line is written as a
 finished result, not a method. Hand the same sheet to every bidder and the
 numbers you get back are actually comparable.
 
