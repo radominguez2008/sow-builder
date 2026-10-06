@@ -90,7 +90,7 @@
       body.appendChild(el('div', 'bkt-hint', esc(bk.hint)));
 
       var tools = el('div', 'bkt-tools');
-      var all = el('button', 'tinybtn', 'Tick all');
+      var all = el('button', 'tinybtn', 'Check all');
       all.type = 'button';
       all.addEventListener('click', function () { setBucket(bi, true); });
       var none = el('button', 'tinybtn', 'Clear');
@@ -381,7 +381,7 @@
   /* ------------------------------------------------------------- assemble */
 
   function ul(items) {
-    if (!items.length) { return '<p class="empty">Nothing ticked in this section.</p>'; }
+    if (!items.length) { return '<p class="empty">Nothing checked in this section.</p>'; }
     return '<ul>' + items.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>';
   }
 
@@ -410,7 +410,7 @@
       any = true;
       h += '<h4>' + bk.n + '. ' + esc(bk.name) + '</h4>' + ul(picked);
     });
-    if (!any) { h += '<p class="empty">No scope lines ticked yet.</p>'; }
+    if (!any) { h += '<p class="empty">No scope lines checked yet.</p>'; }
 
     // responsibility
     h += '<h3>Who does what</h3>';
@@ -660,7 +660,7 @@
   });
 
   $('#btn-reset').addEventListener('click', function () {
-    if (!window.confirm('Clear every tick and start over?')) { return; }
+    if (!window.confirm('Clear every check and start over?')) { return; }
     S.fields = {}; S.ticks = {}; S.custom = {}; S.resp = {};
     S.allow = {}; S.excl = {}; S.gates = {}; S.rules = {}; S.check = {};
     var inputs = document.querySelectorAll('#main input, #main select');

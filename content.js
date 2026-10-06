@@ -47,11 +47,6 @@ window.RD_CONTENT = {
       "placeholder": "1,100"
     },
     {
-      "id": "arv",
-      "label": "Target ARV",
-      "placeholder": "$"
-    },
-    {
       "id": "date",
       "label": "Target completion date",
       "placeholder": "MM/DD/YYYY"
@@ -60,8 +55,8 @@ window.RD_CONTENT = {
   "buckets": [
     {
       "n": 1,
-      "name": "Demo & Dumpster",
-      "hint": "State what must be gone and what condition the space is left in. Not how it comes out. RD reference: junk-out and haul-off on a full gut runs real money — budget it as its own line, never as a rounding error.",
+      "name": "Demo",
+      "hint": "State what must be gone and what condition the space is left in.",
       "lines": [
         "All flooring removed down to bare subfloor; subfloor left clean, dry, and sound",
         "All existing kitchen cabinets, counters, and appliances removed and hauled off",
@@ -82,7 +77,7 @@ window.RD_CONTENT = {
     {
       "n": 2,
       "name": "Exterior",
-      "hint": "State the finished material, the coverage, and the warranty. Not the install method. RD range reference on a 3/2: roof w/ repairs $10k-$25k · vinyl siding $6k-$30k · siding replacement $3-$15/SF · windows $300-$1,000 each · windows and doors package $8k-$25k · exterior paint $5k-$18k · decks and porches $5k-$30k.",
+      "hint": "State the finished material and landscape / yard condition.",
       "lines": [
         "Roof is new, watertight, and delivered with a manufacturer warranty in writing",
         "Roof decking replaced anywhere it is soft, rotted, or delaminated",
@@ -106,7 +101,7 @@ window.RD_CONTENT = {
     {
       "n": 3,
       "name": "MEPs — Mechanical / Electrical / Plumbing",
-      "hint": "State the required pass: inspected and approved to final. Not the routing or the conduit type. RD range reference on a 3/2: rewire w/ panel $6,355-$15,365 · panel swap alone $500-$2,000 · standard HVAC 2-3 ton $6k-$12k · older home HVAC w/ ductwork $8k-$18k · plumbing repairs $500-$5,000 · insulation whole house $3k-$10k.",
+      "hint": "State the required pass: inspected and approved to final.",
       "lines": [
         "Electrical service and panel are adequate for the finished house and pass inspection",
         "All electrical work is permitted, inspected, and approved to final by the AHJ",
@@ -135,8 +130,8 @@ window.RD_CONTENT = {
     },
     {
       "n": 4,
-      "name": "Framing & Drywall",
-      "hint": "State the finish level and the result — level, square, ready for paint. Not the fastener schedule. RD range reference on a 3/2: framing new build $10k-$30k · structural repairs on an old house $3k-$50k+ · drywall over plaster $12k-$25k. RD drywall target is roughly $27 per sheet installed — above $35 a sheet, push back.",
+      "name": "Framing, Insulation & Drywall",
+      "hint": "State the finish level and the result — level, square, ready for paint.",
       "lines": [
         "All structural repairs are engineered where required and the stamped plan is delivered",
         "Floor system is level, solid, and free of bounce and squeaks",
@@ -159,7 +154,7 @@ window.RD_CONTENT = {
     {
       "n": 5,
       "name": "Kitchen",
-      "hint": "Set cabinets, counters, appliances, and finishes by allowance — not by brand, unless the brand drives your ARV. RD reference: on a real build the cabinetry package ran $7,700, countertops and sinks $5,800, tile backsplash $1,200. Owner picks; contractor orders.",
+      "hint": "Set cabinets, counters, appliances, and finishes according to the finish schedules.",
       "lines": [
         "Kitchen layout is functional with code compliant clearances at every appliance and walkway",
         "New cabinets installed level, plumb, secured to framing, with all doors and drawers adjusted",
@@ -182,7 +177,7 @@ window.RD_CONTENT = {
     {
       "n": 6,
       "name": "Baths",
-      "hint": "State the finished result and the waterproofing standard. The method behind the tile is his problem. RD range reference: tile and bath finishes run $5k-$25k per bathroom. Standard RD split — plumber furnishes valves and the water heater, Owner furnishes toilets, vanities, mirrors, and faucets.",
+      "hint": "State the finished result according to the finish schedules. The RD standard is— plumber furnishes valves and the water heater, Owner furnishes toilets, vanities, mirrors, and faucets.",
       "lines": [
         "Every bath is fully functional with hot water, working drains, and no leaks",
         "Shower and tub areas are waterproofed and pass a water test before tile",
@@ -202,44 +197,58 @@ window.RD_CONTENT = {
     },
     {
       "n": 7,
-      "name": "Flooring & Paint",
-      "hint": "State coverage, uniformity, and transitions. Sheen and color you can name — technique you cannot. RD range reference on a 3/2: flooring whole house $5k-$25k · interior paint $4k-$12k · exterior paint $5k-$18k. LVP wear layer is a budget decision — 12 mil for a rental tier, 20 mil for a resale tier. RD pays around $1.20/SF LVP install labor; interior paint above $3.00/SF gets renegotiated.",
+      "name": "Flooring",
+      "hint": "State coverage, uniformity, and transitions according to the finish schedules.",
       "lines": [
         "Flooring is continuous and uniform throughout the main living areas with no color breaks",
         "LVP wear layer is stated in mils and is the same product in every room",
         "Subfloor is prepped flat and clean before any flooring is installed",
         "All transitions between rooms and materials are finished with matching trim",
         "Flooring runs into closets and under all appliances",
-        "No squeaks, gaps, hollow spots, or lifted edges at final walk",
-        "All interior walls, ceilings, trim, doors, windows, and closets are primed and painted to full uniform coverage",
-        "No flashing, roller marks, holidays, or lap lines visible in normal daylight",
-        "All nail holes, dents, and seams are filled and sanded before paint",
-        "Trim and door paint lines are cut sharp with no bleed onto walls",
-        "All interior doors are hung, latched, and swing without rubbing or sticking",
-        "Baseboard, casing, and shoe mold installed continuous with tight mitered joints",
-        "Closet shelving and rods installed and secure",
-        "Paint colors, sheens, and product numbers are recorded and one touch-up kit is left on site",
-        "All hardware, plates, and covers installed and aligned"
+        "No squeaks, gaps, hollow spots, or lifted edges at final walk"
       ]
     },
     {
       "n": 8,
-      "name": "Punch + Contingency",
-      "hint": "State the walk-through standard and the rule for using contingency. Do not list defects you have not seen yet. RD standard: done means Certificate of Occupancy plus passed final inspection plus signed lien release — not 'it looks finished.' Carry 10 percent contingency.",
+      "name": "Paint",
+      "hint": "State coverage, uniformity, and transitions according to the finish schedules.",
+      "lines": [
+        "All interior walls, ceilings, trim, doors, windows, and closets are primed and painted to full uniform coverage",
+        "No flashing, roller marks, holidays, or lap lines visible in normal daylight",
+        "All nail holes, dents, and seams are filled and sanded before paint",
+        "Trim and door paint lines are cut sharp with no bleed onto walls",
+        "Paint colors, sheens, and product numbers are recorded and one touch-up kit is left on site"
+      ]
+    },
+    {
+      "n": 9,
+      "name": "Millwork",
+      "hint": "State coverage, uniformity, and transitions according to the finish schedules.",
+      "lines": [
+        "All interior doors are hung, latched, and swing without rubbing or sticking",
+        "Baseboard, casing, and shoe mold installed continuous with tight mitered joints",
+        "Closet shelving and rods installed and secure",
+        "All hardware, plates, and covers installed and aligned"
+      ]
+    },
+    {
+      "n": 10,
+      "name": "Punch List and Final Payment",
+      "hint": "State the walk-through standard and the rules for the final payment.",
       "lines": [
         "House is professionally cleaned inside and out, move-in ready",
         "All windows and glass are cleaned and free of labels, paint, and overspray",
         "Every door, drawer, window, switch, outlet, and fixture is tested and works at final walk",
         "Owner walk-through happens before final payment and the punch list is written and signed",
         "All punch items are completed within 10 days of the walk-through",
-        "Final payment is due 14 days after completion, with the punch list finished",
+        "Final payment is due within 10 days after the final inspection is passed, all signed lien releases delivered and a Certificate of Occupancy is issued.",
         "All warranties, manuals, and closeout documents are delivered to Owner",
         "All permits are finaled and copies delivered to Owner",
         "Lien releases from the contractor and every sub are delivered before final payment",
         "All keys, remotes, openers, and access codes are delivered to Owner",
         "Photos of completed work are delivered with the closeout package",
-        "Contingency is Owner controlled and released only by signed change order",
-        "Contingency is for unknown conditions found during the work, not for scope the contractor forgot to bid",
+        "Retainage is held until closeout and released with final payment",
+        "Retainage is held for incomplete work and unresolved punch list items, not used as a budget for added scope",
         "Any leftover material purchased with project funds stays with the property"
       ]
     }
@@ -303,7 +312,7 @@ window.RD_CONTENT = {
     ]
   },
   "gates": {
-    "hint": "Never fund a gate that has not been inspected. This is the RD seven-draw structure — 20 / 15 / 15 / 15 / 15 / 15 / 5. Tick the gates you will hold money at and set the percentage.",
+    "hint": "Never fund a gate that has not been inspected. This is the RD seven-draw structure — 20 / 15 / 15 / 15 / 15 / 15 / 5. Check the gates you will hold money at and set the percentage.",
     "items": [
       {
         "id": "D1",
@@ -331,12 +340,12 @@ window.RD_CONTENT = {
       },
       {
         "id": "D7",
-        "label": "Final holdback — CO issued, final inspection passed, signed lien release — 5 percent"
+        "label": "Final retainage — CO issued, final inspection passed, signed lien release — 5 percent"
       }
     ]
   },
   "rules": {
-    "hint": "The rules that stop most of the bleeding. Tick the ones going in your scope. These are the RD Contractor Communication Code, written down.",
+    "hint": "The rules that stop most of the bleeding. Check the ones going in your scope. These are the RD Contractor Communication Code, written down.",
     "lines": [
       "Clear scope of work first — written, signed, and dated before anyone swings a hammer",
       "One point of contact on each side. Nobody else gives direction.",

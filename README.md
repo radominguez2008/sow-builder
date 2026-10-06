@@ -14,8 +14,8 @@ Check the boxes that are true for your flip. Every line is written as a
 finished result, not a method. Hand the same sheet to every bidder and the
 numbers you get back are actually comparable.
 
-Eight buckets: demo & dumpster · exterior · MEPs · framing & drywall ·
-kitchen · baths · flooring & paint · punch + contingency.
+Ten buckets: Demo · Exterior · MEPs · Framing, Insulation & Drywall ·
+Kitchen · Baths · Flooring · Paint · Millwork · Punch List and Final Payment.
 
 ## Notes
 
