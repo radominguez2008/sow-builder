@@ -21,7 +21,7 @@ window.RD_CONTENT = {
     },
     {
       "id": "exit",
-      "label": "Exit strategy",
+      "label": "Strategy",
       "type": "select",
       "options": [
         "Flip / resale",
@@ -254,7 +254,8 @@ window.RD_CONTENT = {
     }
   ],
   "responsibility": {
-    "hint": "Every unmarked row is unfunded work. Mark all twelve. RD default: contractor pulls permits and gets reimbursed; Owner furnishes toilets, vanities, mirrors, light fixtures, fans, and faucets; the plumber furnishes shower valves and the water heater.",
+    "hint": "Assign purchasing, delivery, and site responsibilities before work starts. Choose the responsible party for each applicable row. Unassigned and TBD rows stay out of the finished scope.",
+    "definition": "Furnish means purchase and pay for the specified items, place the orders, and ensure the correct items arrive on site in time for the agreed schedule. Separate purchasing and delivery assignments below control who handles each task. Furnish does not include installation unless installation is expressly included in the scope.",
     "options": [
       "Owner",
       "Contractor",
@@ -266,8 +267,10 @@ window.RD_CONTENT = {
       "Hire and pay the engineer if engineering is required",
       "Order and pay for utility work, meters, temporary power, and disconnects",
       "Select and approve every finish material before it is ordered",
-      "Furnish toilets, vanities, mirrors, light fixtures, fans, and faucets",
-      "Furnish rough-in fixtures — shower valves, water heater, and equipment",
+      "Buy and pay for rough-in materials and equipment, including piping, wiring, valves, and the water heater",
+      "Coordinate, receive, and verify timely delivery of rough-in materials and equipment before scheduled rough-in work",
+      "Buy and pay for finish materials and fixtures, including cabinets, flooring, doors, toilets, vanities, mirrors, lights, fans, and faucets",
+      "Coordinate, receive, and verify timely delivery of finish materials and fixtures before scheduled installation",
       "Dumpster, portable toilet, and jobsite trash-out",
       "Site security, lockbox, and locking the house each night",
       "Schedule all inspections and meet the inspector",
@@ -277,7 +280,13 @@ window.RD_CONTENT = {
     ]
   },
   "allowances": {
-    "hint": "An allowance is only real if it has all five: a dollar amount, exactly what it covers including tax and freight and labor, a selection deadline, an overage rule, and an underage rule. Missing one makes it a blank check. RD requires an allowance reconciliation at every draw showing budgeted versus actual, line by line.",
+    "hint": "Check each allowance you are carrying. Enter its total dollar amount, what it covers, the selection deadline, and the date it is needed on site.",
+    "terms": [
+      "Each allowance is a total installed amount, including materials, tax, freight, and labor for the listed scope.",
+      "Overages require written Owner approval and a signed change order before ordering or performing the added work.",
+      "Underages are credited back to the Owner. Reconcile budgeted versus actual costs at each draw and apply remaining credits to the final payment.",
+      "Selections must be approved by the listed deadline, allowing for ordering and lead time so items arrive by the needed-on-site date, before scheduled installation."
+    ],
     "items": [
       "Cabinetry package",
       "Countertops and sinks",
@@ -294,7 +303,7 @@ window.RD_CONTENT = {
     ]
   },
   "exclusions": {
-    "hint": "Write your exclusions first. Whatever you leave silent, his fine print decides. RD writes exclusions as a plain list on the face of the scope, not buried in terms.",
+    "hint": "Write your exclusions first. Leaving items unclear leaves the project open to avoidable aggravations and change orders. RD writes exclusions as a plain list on the face of the scope, not buried in terms.",
     "lines": [
       "Anything not written in this scope of work is not included",
       "No verbal additions, promises, or side agreements are part of this scope",
@@ -312,35 +321,49 @@ window.RD_CONTENT = {
     ]
   },
   "gates": {
-    "hint": "Never fund a gate that has not been inspected. This is the RD seven-draw structure — 20 / 15 / 15 / 15 / 15 / 15 / 5. Check the gates you will hold money at and set the percentage.",
+    "hint": "Never fund any draws that have not been inspected and approved. Check the draws you will hold money at and set the percentage.",
     "items": [
       {
         "id": "D1",
-        "label": "Mobilization, permit, and slab or foundation complete — 20 percent"
+        "label": "Demo complete; site cleared and ready for the next phase",
+        "categories": [0],
+        "percent": 20
       },
       {
         "id": "D2",
-        "label": "Framing complete, walls and roof standing — 15 percent"
+        "label": "Exterior repairs and structural framing complete; required inspections approved",
+        "categories": [1, 3],
+        "percent": 15
       },
       {
         "id": "D3",
-        "label": "Dried in — roof, siding, windows and doors installed — 15 percent"
+        "label": "MEP rough-in complete, inspected, and approved before close-in",
+        "categories": [2],
+        "percent": 15
       },
       {
         "id": "D4",
-        "label": "Rough-ins complete, all MEP inspections passed — 15 percent"
+        "label": "Insulation approved and drywall finished ready for paint",
+        "categories": [3],
+        "percent": 15
       },
       {
         "id": "D5",
-        "label": "Drywall, cabinets, and flooring complete — 15 percent"
+        "label": "Kitchen and bath installations complete per the finish schedules",
+        "categories": [4, 5],
+        "percent": 15
       },
       {
         "id": "D6",
-        "label": "Interior finish complete and punch list written — 15 percent"
+        "label": "Flooring, paint, and millwork complete per the finish schedules",
+        "categories": [6, 7, 8],
+        "percent": 15
       },
       {
         "id": "D7",
-        "label": "Final retainage — CO issued, final inspection passed, signed lien release — 5 percent"
+        "label": "Punch list complete; final inspection passed, signed lien releases delivered, and CO issued",
+        "categories": [9],
+        "percent": 5
       }
     ]
   },
@@ -358,17 +381,8 @@ window.RD_CONTENT = {
       "Every change order states its schedule impact in days",
       "Allowance overage is presented in writing before the purchase and processed as a change order",
       "Bids come back as one number per bucket. No ranges.",
-      "Every bidder attaches license, GL and workers comp certificates, and three references",
+      "Every bidder attaches a license, proof of insurance including general liability (GL) and workers compensation certificates, and a completed W-9",
       "Retainage is held until final and released only at the last draw"
     ]
-  },
-  "selfcheck": [
-    "Priced in ranges? Pick one number. A range is his to interpret and your lender's to refuse.",
-    "Named a product instead of a result? If you specified it, you own the red tag.",
-    "Used the word allowance without all five elements? That is a blank check.",
-    "Wrote sequencing as a recommendation, or buried it after the price? Make it contractual.",
-    "Left a responsibility row unmarked? Unassigned work is unfunded work.",
-    "Skipped your own exclusions? His fine print wins by default.",
-    "Wrong altitude — too detailed where you have no authority, too vague where you have all of it?"
-  ]
+  }
 };

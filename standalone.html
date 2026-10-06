@@ -205,6 +205,26 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
 .arow:last-child{border-bottom:0}
 .arow:nth-child(even){background:#faf9f6}
 .arow label{display:flex;align-items:center;gap:12px;flex:1;cursor:pointer}
+.arow{flex-wrap:wrap}
+.definition{background:var(--conc);border:1px solid var(--mortar);border-radius:6px;padding:16px;margin:0 0 22px}
+.definition h3{font-size:16px;margin:0 0 8px}
+.definition p{font-size:14px;line-height:1.6;margin:0 0 8px}
+.definition p:last-child{margin-bottom:0}
+#allow+.definition{margin-top:20px}
+.allow-details{flex-basis:100%;margin:0 0 4px 31px;gap:12px}
+.allow-details[hidden]{display:none}
+.allow-details .f label{display:block;font-size:12px;margin-bottom:5px}
+.draw-item{border-bottom:1px solid var(--mortar)}
+.draw-fields{border:0;margin:0;padding:0 16px 18px;min-width:0}
+.field-caption{display:block;font-size:12px;margin:10px 0 6px;font-weight:600}
+.category-picker{border:1px solid var(--mortar);border-radius:4px;background:var(--white)}
+.category-picker summary{padding:10px;cursor:pointer;font-size:14px;overflow-wrap:anywhere}
+.category-picker summary:focus-visible{outline:2px solid var(--tan)}
+.category-options{border-top:1px solid var(--mortar)}
+.draw-fields textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:72px;border:1px solid var(--mortar);border-radius:4px;padding:10px;font:inherit;font-size:14px;color:var(--slate);background:var(--white)}
+.draw-fields textarea:focus{outline:2px solid var(--tan);outline-offset:-1px}
+.draw-fields:disabled{opacity:.6}
+#add-draw{margin-top:14px}
 .arow input[type=checkbox]{
   appearance:none;-webkit-appearance:none;flex:none;width:19px;height:19px;
   border:1.5px solid #9d9a95;border-radius:4px;background:var(--white);cursor:pointer;position:relative;
@@ -441,7 +461,7 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
       <p class="rule" id="the-rule"></p>
       <h2>Three moves and you are done</h2>
       <ol class="howto">
-        <li><strong>Fill in the property information.</strong> Address, exit strategy, bed and bath count, target date. That is your whole project header.</li>
+        <li><strong>Fill in the property information.</strong> Address, strategy, bed and bath count, target date. That is your whole project header.</li>
         <li><strong>Work the ten buckets.</strong> Check every line that is true for your flip. Every line is written as a finished result, not a method — that is the whole point.</li>
         <li><strong>Hand the same sheet to every bidder.</strong> Same sheet to everyone means the numbers you get back are actually comparable.</li>
       </ol>
@@ -469,6 +489,7 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
   <section class="step" data-step="3">
     <h2 class="stitle">Who does what</h2>
     <p class="sub" id="resp-hint"></p>
+    <div class="definition"><h3>What “furnish” means</h3><p id="furnish-definition"></p></div>
     <div id="resp"></div>
   </section>
 
@@ -477,6 +498,7 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
     <h2 class="stitle">Allowances</h2>
     <p class="sub" id="allow-hint"></p>
     <div id="allow"></div>
+    <div class="definition"><h3>Allowance rules</h3><div id="allow-terms"></div></div>
   </section>
 
   <!-- STEP 5 -->
@@ -488,9 +510,11 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
 
   <!-- STEP 6 -->
   <section class="step" data-step="6">
-    <h2 class="stitle">Money gates</h2>
+    <h2 class="stitle">Milestones</h2>
     <p class="sub" id="gate-hint"></p>
+    <p class="sub" id="strategy-note" data-testid="text-strategy-note"></p>
     <div id="gates"></div>
+    <button class="secondary" id="add-draw" type="button" data-testid="button-add-draw">Add draw</button>
     <h2 class="stitle mt">The rules</h2>
     <p class="sub" id="rule-hint"></p>
     <div id="rules"></div>
@@ -498,13 +522,6 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
 
   <!-- STEP 7 -->
   <section class="step" data-step="7">
-    <h2 class="stitle">Before you send this</h2>
-    <p class="sub">Seven ways a scope of work loses money. Clear all seven before it leaves your desk.</p>
-    <div id="selfcheck"></div>
-  </section>
-
-  <!-- STEP 8 -->
-  <section class="step" data-step="8">
     <h2 class="stitle">Your scope of work</h2>
     <p class="sub">This is what you built. Print it, copy it, or download it — then send the same one to every bidder.</p>
     <div class="actions">
@@ -563,7 +580,7 @@ window.RD_CONTENT = {
     },
     {
       "id": "exit",
-      "label": "Exit strategy",
+      "label": "Strategy",
       "type": "select",
       "options": [
         "Flip / resale",
@@ -796,7 +813,8 @@ window.RD_CONTENT = {
     }
   ],
   "responsibility": {
-    "hint": "Every unmarked row is unfunded work. Mark all twelve. RD default: contractor pulls permits and gets reimbursed; Owner furnishes toilets, vanities, mirrors, light fixtures, fans, and faucets; the plumber furnishes shower valves and the water heater.",
+    "hint": "Assign purchasing, delivery, and site responsibilities before work starts. Choose the responsible party for each applicable row. Unassigned and TBD rows stay out of the finished scope.",
+    "definition": "Furnish means purchase and pay for the specified items, place the orders, and ensure the correct items arrive on site in time for the agreed schedule. Separate purchasing and delivery assignments below control who handles each task. Furnish does not include installation unless installation is expressly included in the scope.",
     "options": [
       "Owner",
       "Contractor",
@@ -808,8 +826,10 @@ window.RD_CONTENT = {
       "Hire and pay the engineer if engineering is required",
       "Order and pay for utility work, meters, temporary power, and disconnects",
       "Select and approve every finish material before it is ordered",
-      "Furnish toilets, vanities, mirrors, light fixtures, fans, and faucets",
-      "Furnish rough-in fixtures — shower valves, water heater, and equipment",
+      "Buy and pay for rough-in materials and equipment, including piping, wiring, valves, and the water heater",
+      "Coordinate, receive, and verify timely delivery of rough-in materials and equipment before scheduled rough-in work",
+      "Buy and pay for finish materials and fixtures, including cabinets, flooring, doors, toilets, vanities, mirrors, lights, fans, and faucets",
+      "Coordinate, receive, and verify timely delivery of finish materials and fixtures before scheduled installation",
       "Dumpster, portable toilet, and jobsite trash-out",
       "Site security, lockbox, and locking the house each night",
       "Schedule all inspections and meet the inspector",
@@ -819,7 +839,13 @@ window.RD_CONTENT = {
     ]
   },
   "allowances": {
-    "hint": "An allowance is only real if it has all five: a dollar amount, exactly what it covers including tax and freight and labor, a selection deadline, an overage rule, and an underage rule. Missing one makes it a blank check. RD requires an allowance reconciliation at every draw showing budgeted versus actual, line by line.",
+    "hint": "Check each allowance you are carrying. Enter its total dollar amount, what it covers, the selection deadline, and the date it is needed on site.",
+    "terms": [
+      "Each allowance is a total installed amount, including materials, tax, freight, and labor for the listed scope.",
+      "Overages require written Owner approval and a signed change order before ordering or performing the added work.",
+      "Underages are credited back to the Owner. Reconcile budgeted versus actual costs at each draw and apply remaining credits to the final payment.",
+      "Selections must be approved by the listed deadline, allowing for ordering and lead time so items arrive by the needed-on-site date, before scheduled installation."
+    ],
     "items": [
       "Cabinetry package",
       "Countertops and sinks",
@@ -836,7 +862,7 @@ window.RD_CONTENT = {
     ]
   },
   "exclusions": {
-    "hint": "Write your exclusions first. Whatever you leave silent, his fine print decides. RD writes exclusions as a plain list on the face of the scope, not buried in terms.",
+    "hint": "Write your exclusions first. Leaving items unclear leaves the project open to avoidable aggravations and change orders. RD writes exclusions as a plain list on the face of the scope, not buried in terms.",
     "lines": [
       "Anything not written in this scope of work is not included",
       "No verbal additions, promises, or side agreements are part of this scope",
@@ -854,35 +880,49 @@ window.RD_CONTENT = {
     ]
   },
   "gates": {
-    "hint": "Never fund a gate that has not been inspected. This is the RD seven-draw structure — 20 / 15 / 15 / 15 / 15 / 15 / 5. Check the gates you will hold money at and set the percentage.",
+    "hint": "Never fund any draws that have not been inspected and approved. Check the draws you will hold money at and set the percentage.",
     "items": [
       {
         "id": "D1",
-        "label": "Mobilization, permit, and slab or foundation complete — 20 percent"
+        "label": "Demo complete; site cleared and ready for the next phase",
+        "categories": [0],
+        "percent": 20
       },
       {
         "id": "D2",
-        "label": "Framing complete, walls and roof standing — 15 percent"
+        "label": "Exterior repairs and structural framing complete; required inspections approved",
+        "categories": [1, 3],
+        "percent": 15
       },
       {
         "id": "D3",
-        "label": "Dried in — roof, siding, windows and doors installed — 15 percent"
+        "label": "MEP rough-in complete, inspected, and approved before close-in",
+        "categories": [2],
+        "percent": 15
       },
       {
         "id": "D4",
-        "label": "Rough-ins complete, all MEP inspections passed — 15 percent"
+        "label": "Insulation approved and drywall finished ready for paint",
+        "categories": [3],
+        "percent": 15
       },
       {
         "id": "D5",
-        "label": "Drywall, cabinets, and flooring complete — 15 percent"
+        "label": "Kitchen and bath installations complete per the finish schedules",
+        "categories": [4, 5],
+        "percent": 15
       },
       {
         "id": "D6",
-        "label": "Interior finish complete and punch list written — 15 percent"
+        "label": "Flooring, paint, and millwork complete per the finish schedules",
+        "categories": [6, 7, 8],
+        "percent": 15
       },
       {
         "id": "D7",
-        "label": "Final retainage — CO issued, final inspection passed, signed lien release — 5 percent"
+        "label": "Punch list complete; final inspection passed, signed lien releases delivered, and CO issued",
+        "categories": [9],
+        "percent": 5
       }
     ]
   },
@@ -900,19 +940,10 @@ window.RD_CONTENT = {
       "Every change order states its schedule impact in days",
       "Allowance overage is presented in writing before the purchase and processed as a change order",
       "Bids come back as one number per bucket. No ranges.",
-      "Every bidder attaches license, GL and workers comp certificates, and three references",
+      "Every bidder attaches a license, proof of insurance including general liability (GL) and workers compensation certificates, and a completed W-9",
       "Retainage is held until final and released only at the last draw"
     ]
-  },
-  "selfcheck": [
-    "Priced in ranges? Pick one number. A range is his to interpret and your lender's to refuse.",
-    "Named a product instead of a result? If you specified it, you own the red tag.",
-    "Used the word allowance without all five elements? That is a blank check.",
-    "Wrote sequencing as a recommendation, or buried it after the price? Make it contractual.",
-    "Left a responsibility row unmarked? Unassigned work is unfunded work.",
-    "Skipped your own exclusions? His fine print wins by default.",
-    "Wrong altitude — too detailed where you have no authority, too vague where you have all of it?"
-  ]
+  }
 };
 
 </script>
@@ -931,15 +962,16 @@ window.RD_CONTENT = {
     ticks: {},      // "b0-3" -> true
     custom: {},     // "b0" -> [strings]
     resp: {},       // item index -> option string
-    allow: {},      // index -> {on:bool, amt:string}
+    allow: {},      // index -> {on, amt, covers, deadline, needed}
     excl: {},       // index -> true
-    gates: {},      // index -> {on:bool, pct:string}
-    rules: {},      // index -> true
-    check: {}       // index -> true
+    gates: {},      // index -> {on, pct, label, categories, edited}
+    rules: {}       // index -> true
   };
+  var drawCount = C.gates.items.length;
+  var lastStrategy = '';
 
   var STEPS = ['Start', 'Project', 'Buckets', 'Who does what', 'Allowances',
-    'Exclusions', 'Gates & rules', 'Final check', 'Your scope'];
+    'Exclusions', 'Milestones & rules', 'Your scope'];
 
   var $ = function (s) { return document.querySelector(s); };
   var esc = function (t) {
@@ -983,7 +1015,11 @@ window.RD_CONTENT = {
       input.id = id;
       input.setAttribute('data-testid', 'input-' + f.id);
       input.addEventListener('input', function () { S.fields[f.id] = input.value; tally(); });
-      input.addEventListener('change', function () { S.fields[f.id] = input.value; tally(); });
+      input.addEventListener('change', function () {
+        S.fields[f.id] = input.value;
+        if (f.id === 'exit') { applyStrategy(); }
+        tally();
+      });
       d.appendChild(input);
       wrap.appendChild(d);
     });
@@ -1104,6 +1140,7 @@ window.RD_CONTENT = {
   (function () {
     var R = C.responsibility;
     $('#resp-hint').textContent = R.hint;
+    $('#furnish-definition').textContent = R.definition;
     var card = el('div', 'card');
     var t = document.createElement('table');
     t.className = 'rtable';
@@ -1143,6 +1180,7 @@ window.RD_CONTENT = {
   (function () {
     var A = C.allowances;
     $('#allow-hint').textContent = A.hint;
+    A.terms.forEach(function (term) { $('#allow-terms').appendChild(el('p', null, esc(term))); });
     var card = el('div', 'card');
     A.items.forEach(function (item, ai) {
       var row = el('div', 'arow');
@@ -1155,10 +1193,37 @@ window.RD_CONTENT = {
       amt.placeholder = '0';
       amt.disabled = true;
       amt.setAttribute('data-testid', 'input-allow-' + ai);
+      amt.setAttribute('aria-label', item + ': total allowance including tax, freight, and labor');
+      var detail = el('div', 'allow-details fields');
+      var detailInputs = {};
+      [
+        ['covers', 'Included items / scope', 'text', item],
+        ['deadline', 'Selection deadline', 'date', ''],
+        ['needed', 'Needed on site by', 'date', '']
+      ].forEach(function (spec) {
+        var wrap = el('div', 'f' + (spec[0] === 'covers' ? ' wide' : ''));
+        var id = 'allow-' + spec[0] + '-' + ai;
+        var label = el('label', null, spec[1]);
+        label.setAttribute('for', id);
+        var field = document.createElement('input');
+        field.id = id; field.type = spec[2]; field.placeholder = spec[3];
+        field.disabled = true;
+        field.setAttribute('data-testid', 'input-allow-' + spec[0] + '-' + ai);
+        field.addEventListener('input', function () {
+          S.allow[ai][spec[0]] = field.value;
+        });
+        wrap.appendChild(label); wrap.appendChild(field); detail.appendChild(wrap);
+        detailInputs[spec[0]] = field;
+      });
       cb.addEventListener('change', function () {
         amt.disabled = !cb.checked;
         if (!S.allow[ai]) { S.allow[ai] = { on: false, amt: '' }; }
         S.allow[ai].on = cb.checked;
+        Object.keys(detailInputs).forEach(function (key) {
+          detailInputs[key].disabled = !cb.checked;
+          if (!cb.checked) { detailInputs[key].value = ''; S.allow[ai][key] = ''; }
+        });
+        detail.hidden = !cb.checked;
         if (!cb.checked) { amt.value = ''; S.allow[ai].amt = ''; }
         tally();
       });
@@ -1173,6 +1238,8 @@ window.RD_CONTENT = {
       money.appendChild(el('span', null, '$'));
       money.appendChild(amt);
       row.appendChild(money);
+      detail.hidden = true;
+      row.appendChild(detail);
       card.appendChild(row);
     });
     $('#allow').appendChild(card);
@@ -1203,45 +1270,18 @@ window.RD_CONTENT = {
   (function () {
     var G = C.gates;
     $('#gate-hint').textContent = G.hint;
-    var card = el('div', 'card');
-    G.items.forEach(function (g, gi) {
-      var row = el('div', 'grow');
-      var lab = document.createElement('label');
-      var cb = document.createElement('input');
-      cb.type = 'checkbox';
-      cb.setAttribute('data-testid', 'checkbox-gate-' + gi);
-      var pct = document.createElement('input');
-      pct.type = 'text';
-      pct.placeholder = '0';
-      pct.disabled = true;
-      pct.setAttribute('data-testid', 'input-gate-' + gi);
-      cb.addEventListener('change', function () {
-        pct.disabled = !cb.checked;
-        if (!S.gates[gi]) { S.gates[gi] = { on: false, pct: '' }; }
-        S.gates[gi].on = cb.checked;
-        if (!cb.checked) { pct.value = ''; S.gates[gi].pct = ''; }
-        pctTotal(); tally();
-      });
-      pct.addEventListener('input', function () {
-        if (!S.gates[gi]) { S.gates[gi] = { on: true, pct: '' }; }
-        S.gates[gi].pct = pct.value;
-        pctTotal();
-      });
-      lab.appendChild(cb);
-      lab.appendChild(el('span', 'gcode', g.id));
-      lab.appendChild(el('span', null, esc(g.label)));
-      row.appendChild(lab);
-      var p = el('div', 'pct');
-      p.appendChild(pct);
-      p.appendChild(el('span', null, '%'));
-      row.appendChild(p);
-      card.appendChild(row);
+    renderMilestones();
+    $('#add-draw').addEventListener('click', function () {
+      var insertAt = drawCount;
+      for (var i = drawCount - 1; i >= 0; i--) {
+        if (S.gates[i].categories.indexOf(C.buckets.length - 1) >= 0) { insertAt = i; break; }
+      }
+      for (var j = drawCount; j > insertAt; j--) { S.gates[j] = S.gates[j - 1]; }
+      S.gates[insertAt] = {on: false, pct: '', label: '', categories: [], suggested: '', edited: true};
+      drawCount++;
+      renderMilestones();
+      $('#draw-' + insertAt).scrollIntoView({behavior: 'smooth', block: 'center'});
     });
-    var tot = el('div', 'pcttotal');
-    tot.id = 'pcttotal';
-    tot.innerHTML = '<span>Draw percentages assigned</span><b>0%</b>';
-    card.appendChild(tot);
-    $('#gates').appendChild(card);
 
     var RU = C.rules;
     $('#rule-hint').textContent = RU.hint;
@@ -1262,6 +1302,131 @@ window.RD_CONTENT = {
     $('#rules').appendChild(card2);
   })();
 
+  function drawDefault(gi) {
+    var base = C.gates.items[gi];
+    var strategy = S.fields.exit || '';
+    var wholesale = strategy === 'Wholesale / assign';
+    var g = {
+      on: false, pct: '', edited: false,
+      label: base && !wholesale ? base.label : '',
+      categories: base && !wholesale ? base.categories.slice() : [],
+      suggested: base && !wholesale ? base.percent : ''
+    };
+    if (gi === 6 && !wholesale) {
+      var readiness = {
+        'Flip / resale': 'Resale-ready closeout',
+        'Rental hold': 'Rental-ready closeout',
+        'BRRRR — refinance and hold': 'Rental-ready rehab closeout; work documentation delivered for refinance review',
+        'Owner occupy': 'Owner move-in closeout'
+      };
+      if (readiness[strategy]) { g.label = readiness[strategy] + ': ' + base.label; }
+    }
+    return g;
+  }
+
+  function applyStrategy() {
+    if (lastStrategy === (S.fields.exit || '')) { return; }
+    lastStrategy = S.fields.exit || '';
+    Object.keys(S.gates).forEach(function (key) {
+      var old = S.gates[key];
+      if (!old.edited && !old.on) { S.gates[key] = drawDefault(Number(key)); }
+    });
+    renderMilestones();
+  }
+
+  function categorySummary(g) {
+    return g.categories.length ? g.categories.map(function (i) { return C.buckets[i].name; }).join(' + ')
+      : 'Choose one or more categories';
+  }
+
+  function renderMilestones() {
+    var root = $('#gates');
+    root.innerHTML = '';
+    var strategy = S.fields.exit || '';
+    $('#strategy-note').textContent = strategy === 'Wholesale / assign'
+      ? 'Wholesale / assign: no construction draws are assumed. Add only work you are actually funding before assignment. Checked or customized draws are kept when strategy changes.'
+      : (strategy ? strategy + ': suggested rehab milestones. ' : 'Choose a strategy on the Project page for suggested rehab milestones. ') +
+        'Group one or more categories per draw and edit the completion requirement. Checked or customized draws are kept when strategy changes.';
+    var card = el('div', 'card');
+    for (var gi = 0; gi < drawCount; gi++) { buildDraw(gi); }
+    function buildDraw(gi) {
+      var g = S.gates[gi] || (S.gates[gi] = drawDefault(gi));
+      var shell = el('div', 'draw-item'); shell.id = 'draw-' + gi;
+      var row = el('div', 'grow');
+      var lab = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox'; cb.checked = g.on;
+      cb.setAttribute('data-testid', 'checkbox-gate-' + gi);
+      var pct = document.createElement('input');
+      pct.type = 'number'; pct.min = '0'; pct.max = '100'; pct.step = '0.1';
+      pct.placeholder = String(g.suggested || '0');
+      pct.disabled = !g.on; pct.value = g.pct;
+      pct.setAttribute('data-testid', 'input-gate-' + gi);
+      pct.setAttribute('aria-label', 'Draw ' + (gi + 1) + ' percentage');
+      var fields = document.createElement('fieldset');
+      fields.className = 'draw-fields'; fields.disabled = !g.on;
+      var details = document.createElement('details');
+      details.className = 'category-picker';
+      var summary = el('summary', null, esc(categorySummary(g)));
+      summary.setAttribute('data-testid', 'dropdown-categories-' + gi);
+      details.appendChild(summary);
+      var choices = el('div', 'category-options');
+      C.buckets.forEach(function (bk, bi) {
+        var label = el('label', 'tick');
+        var choice = document.createElement('input');
+        choice.type = 'checkbox'; choice.checked = g.categories.indexOf(bi) >= 0;
+        choice.setAttribute('data-testid', 'checkbox-gate-' + gi + '-category-' + bi);
+        choice.addEventListener('change', function () {
+          g.edited = true;
+          g.categories = g.categories.filter(function (x) { return x !== bi; });
+          if (choice.checked) { g.categories.push(bi); g.categories.sort(function (a,b) { return a-b; }); }
+          summary.textContent = categorySummary(g);
+        });
+        label.appendChild(choice); label.appendChild(el('span', null, esc(bk.name)));
+        choices.appendChild(label);
+      });
+      details.appendChild(choices);
+      var pickerLabel = el('p', 'field-caption', 'Categories in this draw');
+      fields.appendChild(pickerLabel); fields.appendChild(details);
+      var requirement = document.createElement('textarea');
+      requirement.rows = 2; requirement.value = g.label;
+      requirement.id = 'milestone-' + gi;
+      requirement.placeholder = 'Describe the completed work that must be inspected and approved';
+      requirement.setAttribute('data-testid', 'input-gate-label-' + gi);
+      var reqLabel = el('label', 'field-caption', 'Completion requirement');
+      reqLabel.setAttribute('for', requirement.id);
+      requirement.addEventListener('input', function () { g.label = requirement.value; g.edited = true; });
+      fields.appendChild(reqLabel); fields.appendChild(requirement);
+      cb.addEventListener('change', function () {
+        pct.disabled = !cb.checked;
+        fields.disabled = !cb.checked;
+        g.on = cb.checked;
+        if (cb.checked && !g.pct) { g.pct = String(g.suggested || ''); pct.value = g.pct; }
+        if (!cb.checked) { pct.value = ''; g.pct = ''; }
+        pctTotal(); tally();
+      });
+      pct.addEventListener('input', function () {
+        g.pct = pct.value; g.edited = true;
+        pctTotal();
+      });
+      lab.appendChild(cb);
+      lab.appendChild(el('span', 'gcode', 'D' + (gi + 1)));
+      lab.appendChild(el('span', null, 'Draw ' + (gi + 1)));
+      row.appendChild(lab);
+      var p = el('div', 'pct');
+      p.appendChild(pct);
+      p.appendChild(el('span', null, '%'));
+      row.appendChild(p);
+      shell.appendChild(row); shell.appendChild(fields); card.appendChild(shell);
+    }
+    var tot = el('div', 'pcttotal');
+    tot.id = 'pcttotal';
+    tot.innerHTML = '<span>Draw percentages assigned</span><b>0%</b>';
+    card.appendChild(tot);
+    root.appendChild(card);
+    pctTotal();
+  }
+
   function pctTotal() {
     var sum = 0;
     Object.keys(S.gates).forEach(function (k) {
@@ -1277,31 +1442,42 @@ window.RD_CONTENT = {
       : 'Draw percentages assigned';
   }
 
-  // ---- step 7: selfcheck
-  (function () {
-    var card = el('div', 'card');
-    C.selfcheck.forEach(function (line, si) {
-      var lab = el('label', 'sc');
-      var cb = document.createElement('input');
-      cb.type = 'checkbox';
-      cb.setAttribute('data-testid', 'checkbox-selfcheck-' + si);
-      cb.addEventListener('change', function () {
-        if (cb.checked) { S.check[si] = true; } else { delete S.check[si]; }
-        tally();
-      });
-      lab.appendChild(cb);
-      lab.appendChild(el('span', 'num', String(si + 1)));
-      lab.appendChild(el('span', null, esc(line)));
-      card.appendChild(lab);
-    });
-    $('#selfcheck').appendChild(card);
-  })();
-
   /* ------------------------------------------------------------- assemble */
 
   function ul(items) {
     if (!items.length) { return '<p class="empty">Nothing checked in this section.</p>'; }
     return '<ul>' + items.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>';
+  }
+
+  function assignedResponsibilities() {
+    return C.responsibility.items.map(function (item, ri) {
+      return {item: item, who: S.resp[ri]};
+    }).filter(function (r) { return r.who && r.who !== 'TBD'; });
+  }
+
+  function allowanceLines() {
+    var lines = [];
+    C.allowances.items.forEach(function (item, ai) {
+      var a = S.allow[ai];
+      if (!a || !a.on) { return; }
+      lines.push(item + (a.amt.trim() ? ' — $' + a.amt.trim() : ' — amount not set') +
+        '; includes: ' + ((a.covers || '').trim() || item) +
+        '; selection deadline: ' + (a.deadline || 'NOT SET') +
+        '; needed on site by: ' + (a.needed || 'NOT SET'));
+    });
+    return lines;
+  }
+
+  function milestoneLines() {
+    var lines = [];
+    for (var i = 0; i < drawCount; i++) {
+      var g = S.gates[i];
+      if (!g || !g.on) { continue; }
+      lines.push('D' + (i + 1) + ' — ' + (g.categories.length ? categorySummary(g) : 'CATEGORIES NOT SET') +
+        ': ' + (g.label.trim() || 'COMPLETION REQUIREMENT NOT SET') +
+        (g.pct ? ' (' + g.pct + '%)' : ' (PERCENTAGE NOT SET)'));
+    }
+    return lines;
   }
 
   function buildHTML() {
@@ -1332,31 +1508,20 @@ window.RD_CONTENT = {
     if (!any) { h += '<p class="empty">No scope lines checked yet.</p>'; }
 
     // responsibility
-    h += '<h3>Who does what</h3>';
-    h += '<ul class="respout">' + C.responsibility.items.map(function (item, ri) {
-      var who = S.resp[ri];
-      return '<li class="' + (who ? '' : 'na') + '">' + esc(item) +
-        '<em>' + esc(who || 'NOT ASSIGNED') + '</em></li>';
-    }).join('') + '</ul>';
+    var assigned = assignedResponsibilities();
+    if (assigned.length) {
+      h += '<h3>Who does what</h3><p>' + esc(C.responsibility.definition) + '</p>';
+      h += '<ul class="respout">' + assigned.map(function (r) {
+        return '<li>' + esc(r.item) + '<em>' + esc(r.who) + '</em></li>';
+      }).join('') + '</ul>';
+    }
 
     // allowances
     h += '<h3>Allowances</h3>';
-    var al = C.allowances.items.filter(function (_, ai) {
-      return S.allow[ai] && S.allow[ai].on;
-    }).map(function (item, i) { return item; });
-    var alFull = [];
-    C.allowances.items.forEach(function (item, ai) {
-      if (S.allow[ai] && S.allow[ai].on) {
-        var a = (S.allow[ai].amt || '').trim();
-        alFull.push(item + (a ? ' \u2014 $' + a : ' \u2014 amount not set'));
-      }
-    });
+    var alFull = allowanceLines();
     h += ul(alFull);
     if (alFull.length) {
-      h += '<h4>Every allowance above must state</h4>' +
-        ul(['The dollar amount', 'Exactly what it covers, including tax, freight, and labor',
-          'The selection deadline', 'What happens if it goes over',
-          'What happens if it comes in under']);
+      h += C.allowances.terms.map(function (term) { return '<p>' + esc(term) + '</p>'; }).join('');
     }
 
     // exclusions
@@ -1364,14 +1529,8 @@ window.RD_CONTENT = {
     h += ul(C.exclusions.lines.filter(function (_, ei) { return S.excl[ei]; }));
 
     // gates
-    h += '<h3>Money gates</h3>';
-    var gl = [];
-    C.gates.items.forEach(function (g, gi) {
-      if (S.gates[gi] && S.gates[gi].on) {
-        var p = (S.gates[gi].pct || '').trim();
-        gl.push(g.id + ' \u2014 ' + g.label + (p ? '  (' + p + '%)' : ''));
-      }
-    });
+    h += '<h3>Milestones</h3>';
+    var gl = milestoneLines();
     h += ul(gl);
 
     // rules
@@ -1411,41 +1570,28 @@ window.RD_CONTENT = {
       L.push(bk.n + '. ' + bk.name.toUpperCase());
       picked.forEach(function (p) { L.push('  - ' + p); });
     });
-    L.push('');
-    L.push('WHO DOES WHAT');
-    L.push('-------------');
-    C.responsibility.items.forEach(function (item, ri) {
-      L.push('  ' + (S.resp[ri] || 'NOT ASSIGNED') + ' :: ' + item);
-    });
-    var alFull = [];
-    C.allowances.items.forEach(function (item, ai) {
-      if (S.allow[ai] && S.allow[ai].on) {
-        var a = (S.allow[ai].amt || '').trim();
-        alFull.push(item + (a ? ' - $' + a : ' - amount not set'));
-      }
-    });
+    var assigned = assignedResponsibilities();
+    if (assigned.length) {
+      L.push(''); L.push('WHO DOES WHAT'); L.push('-------------');
+      L.push(C.responsibility.definition);
+      assigned.forEach(function (r) { L.push('  ' + r.who + ' :: ' + r.item); });
+    }
+    var alFull = allowanceLines();
     if (alFull.length) {
       L.push('');
       L.push('ALLOWANCES');
       L.push('----------');
       alFull.forEach(function (a) { L.push('  - ' + a); });
-      L.push('  Each allowance must state: amount; exactly what it covers including tax,');
-      L.push('  freight and labor; selection deadline; overage rule; underage rule.');
+      C.allowances.terms.forEach(function (term) { L.push(term); });
     }
     var ex = C.exclusions.lines.filter(function (_, ei) { return S.excl[ei]; });
     if (ex.length) {
       L.push(''); L.push('EXCLUSIONS'); L.push('----------');
       ex.forEach(function (e) { L.push('  - ' + e); });
     }
-    var gl = [];
-    C.gates.items.forEach(function (g, gi) {
-      if (S.gates[gi] && S.gates[gi].on) {
-        var p = (S.gates[gi].pct || '').trim();
-        gl.push(g.id + ' - ' + g.label + (p ? '  (' + p + '%)' : ''));
-      }
-    });
+    var gl = milestoneLines();
     if (gl.length) {
-      L.push(''); L.push('MONEY GATES'); L.push('-----------');
+      L.push(''); L.push('MILESTONES'); L.push('----------');
       gl.forEach(function (g) { L.push('  - ' + g); });
     }
     var ru = C.rules.lines.filter(function (_, ri) { return S.rules[ri]; });
@@ -1492,7 +1638,7 @@ window.RD_CONTENT = {
       t.textContent = c + ' of ' + bk.lines.length;
       t.classList.toggle('has', c > 0);
     });
-    var unassigned = C.responsibility.items.length - Object.keys(S.resp).length;
+    var unassigned = C.responsibility.items.length - assignedResponsibilities().length;
     var total = tickCount() + Object.keys(S.excl).length + Object.keys(S.rules).length;
     var msg = '<b>' + total + '</b> lines in your scope';
     if (unassigned > 0) {
@@ -1500,7 +1646,7 @@ window.RD_CONTENT = {
         (unassigned === 1 ? '' : 's') + ' unassigned';
     }
     $('#count').innerHTML = msg;
-    if (S.step === 8) { refreshOutput(); }
+    if (S.step === STEPS.length - 1) { refreshOutput(); }
   }
 
   function go(n) {
@@ -1520,7 +1666,7 @@ window.RD_CONTENT = {
     $('#btn-next').textContent = S.step === STEPS.length - 2 ? 'Build my scope'
       : (S.step === STEPS.length - 1 ? 'Done' : 'Next');
     $('#btn-next').style.visibility = S.step === STEPS.length - 1 ? 'hidden' : 'visible';
-    if (S.step === 8) { refreshOutput(); }
+    if (S.step === STEPS.length - 1) { refreshOutput(); }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -1581,7 +1727,8 @@ window.RD_CONTENT = {
   $('#btn-reset').addEventListener('click', function () {
     if (!window.confirm('Clear every check and start over?')) { return; }
     S.fields = {}; S.ticks = {}; S.custom = {}; S.resp = {};
-    S.allow = {}; S.excl = {}; S.gates = {}; S.rules = {}; S.check = {};
+    S.allow = {}; S.excl = {}; S.gates = {}; S.rules = {};
+    drawCount = C.gates.items.length; lastStrategy = '';
     var inputs = document.querySelectorAll('#main input, #main select');
     for (var i = 0; i < inputs.length; i++) {
       var n = inputs[i];
@@ -1592,6 +1739,8 @@ window.RD_CONTENT = {
     var tds = document.querySelectorAll('.rtable td:first-child');
     for (var k = 0; k < tds.length; k++) { tds[k].classList.add('unset'); }
     C.buckets.forEach(function (_, bi) { renderCustom(bi); });
+    document.querySelectorAll('.allow-details').forEach(function (d) { d.hidden = true; });
+    renderMilestones();
     pctTotal();
     tally();
     go(0);

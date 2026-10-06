@@ -193,6 +193,26 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
 .arow:last-child{border-bottom:0}
 .arow:nth-child(even){background:#faf9f6}
 .arow label{display:flex;align-items:center;gap:12px;flex:1;cursor:pointer}
+.arow{flex-wrap:wrap}
+.definition{background:var(--conc);border:1px solid var(--mortar);border-radius:6px;padding:16px;margin:0 0 22px}
+.definition h3{font-size:16px;margin:0 0 8px}
+.definition p{font-size:14px;line-height:1.6;margin:0 0 8px}
+.definition p:last-child{margin-bottom:0}
+#allow+.definition{margin-top:20px}
+.allow-details{flex-basis:100%;margin:0 0 4px 31px;gap:12px}
+.allow-details[hidden]{display:none}
+.allow-details .f label{display:block;font-size:12px;margin-bottom:5px}
+.draw-item{border-bottom:1px solid var(--mortar)}
+.draw-fields{border:0;margin:0;padding:0 16px 18px;min-width:0}
+.field-caption{display:block;font-size:12px;margin:10px 0 6px;font-weight:600}
+.category-picker{border:1px solid var(--mortar);border-radius:4px;background:var(--white)}
+.category-picker summary{padding:10px;cursor:pointer;font-size:14px;overflow-wrap:anywhere}
+.category-picker summary:focus-visible{outline:2px solid var(--tan)}
+.category-options{border-top:1px solid var(--mortar)}
+.draw-fields textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:72px;border:1px solid var(--mortar);border-radius:4px;padding:10px;font:inherit;font-size:14px;color:var(--slate);background:var(--white)}
+.draw-fields textarea:focus{outline:2px solid var(--tan);outline-offset:-1px}
+.draw-fields:disabled{opacity:.6}
+#add-draw{margin-top:14px}
 .arow input[type=checkbox]{
   appearance:none;-webkit-appearance:none;flex:none;width:19px;height:19px;
   border:1.5px solid #9d9a95;border-radius:4px;background:var(--white);cursor:pointer;position:relative;

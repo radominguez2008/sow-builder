@@ -17,6 +17,13 @@ numbers you get back are actually comparable.
 Ten buckets: Demo · Exterior · MEPs · Framing, Insulation & Drywall ·
 Kitchen · Baths · Flooring · Paint · Millwork · Punch List and Final Payment.
 
+Eight steps take you from property information to the assembled scope.
+Responsibilities distinguish buying materials from arranging delivery.
+Allowances include selection and delivery dates plus clear overage and credit
+rules. Milestones use editable rehab starting points, one or more scope
+categories per draw, and additional draws when needed. Wholesale assumes no
+construction draws. Unassigned and TBD responsibilities stay out of the output.
+
 ## Notes
 
 Runs entirely in the browser. Nothing is uploaded, stored, or tracked —
