@@ -530,7 +530,37 @@
     return lines;
   }
 
-  function buildHTML() {
+  // Screen-only presentation. Print and plain-text output retain their layout.
+  function allowanceCards() {
+    var h = '';
+    C.allowances.items.forEach(function (item, ai) {
+      var a = S.allow[ai];
+      if (!a || !a.on) { return; }
+      h += '<article class="scope-allowance">' +
+        '<div class="scope-card-top"><h4>' + esc(item) + '</h4><b class="scope-amount">' +
+        esc(a.amt.trim() ? '$' + a.amt.trim() : 'Amount not set') + '</b></div>' +
+        '<dl class="scope-facts"><div class="scope-includes"><dt>Includes</dt><dd>' +
+        esc((a.covers || '').trim() || item) + '</dd></div>' +
+        '<div><dt>Selection deadline</dt><dd>' + esc(a.deadline || 'NOT SET') + '</dd></div>' +
+        '<div><dt>Needed on site by</dt><dd>' + esc(a.needed || 'NOT SET') + '</dd></div></dl></article>';
+    });
+    return h || ul([]);
+  }
+
+  function milestoneCards() {
+    var h = '';
+    for (var i = 0; i < drawCount; i++) {
+      var g = S.gates[i];
+      if (!g || !g.on) { continue; }
+      h += '<article class="scope-milestone"><div class="scope-card-top"><h4>D' + (i + 1) + ' — ' +
+        esc(g.categories.length ? categorySummary(g) : 'CATEGORIES NOT SET') +
+        '</h4><b class="scope-percent">' + esc(g.pct ? g.pct + '%' : 'PERCENTAGE NOT SET') +
+        '</b></div><p>' + esc(g.label.trim() || 'COMPLETION REQUIREMENT NOT SET') + '</p></article>';
+    }
+    return h || ul([]);
+  }
+
+  function buildHTML(isPrint) {
     var h = '';
     var f = S.fields;
 
@@ -553,25 +583,29 @@
       picked = picked.concat(S.custom[bi] || []);
       if (!picked.length) { return; }
       any = true;
-      h += '<h4>' + bk.n + '. ' + esc(bk.name) + '</h4>' + ul(picked);
+      h += (isPrint ? '' : '<section class="scope-category">') +
+        '<h4>' + bk.n + '. ' + esc(bk.name) + '</h4>' + ul(picked) +
+        (isPrint ? '' : '</section>');
     });
     if (!any) { h += '<p class="empty">No scope lines checked yet.</p>'; }
 
     // responsibility
     var assigned = assignedResponsibilities();
     if (assigned.length) {
-      h += '<h3>Who does what</h3><p>' + esc(C.responsibility.definition) + '</p>';
+      h += '<h3>Who does what</h3><p' + (isPrint ? '' : ' class="scope-definition"') + '>' + esc(C.responsibility.definition) + '</p>';
       h += '<ul class="respout">' + assigned.map(function (r) {
-        return '<li>' + esc(r.item) + '<em>' + esc(r.who) + '</em></li>';
+        return '<li>' + (isPrint ? esc(r.item) : '<span>' + esc(r.item) + '</span>') + '<em>' + esc(r.who) + '</em></li>';
       }).join('') + '</ul>';
     }
 
     // allowances
     h += '<h3>Allowances</h3>';
     var alFull = allowanceLines();
-    h += ul(alFull);
+    h += isPrint ? ul(alFull) : allowanceCards();
     if (alFull.length) {
+      if (!isPrint) { h += '<div class="scope-terms">'; }
       h += C.allowances.terms.map(function (term) { return '<p>' + esc(term) + '</p>'; }).join('');
+      if (!isPrint) { h += '</div>'; }
     }
 
     // exclusions
@@ -581,7 +615,7 @@
     // gates
     h += '<h3>Milestones</h3>';
     var gl = milestoneLines();
-    h += ul(gl);
+    h += isPrint ? ul(gl) : milestoneCards();
 
     // rules
     h += '<h3>Rules</h3>';
@@ -668,7 +702,7 @@
       '<h1>Scope of Work</h1>' +
       '<p class="p-sub">' + esc((S.fields.address || '').trim() || 'Property address not entered') + '</p>' +
       '<p class="p-rulel">' + esc(B.rule) + '</p>' +
-      html;
+      buildHTML(true);
   }
 
   /* ------------------------------------------------------------ nav/tally */

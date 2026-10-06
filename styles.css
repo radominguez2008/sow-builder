@@ -419,3 +419,67 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
   font-size:11px;letter-spacing:.05em;color:var(--tan-dk);flex:none;
 }
 .output .respout li.na em,#printdoc .respout li.na em{color:#A12C7B}
+
+/* Final review page only: quieter hierarchy and separated line-item details.
+   The wizard, print document, and plain-text exports are unchanged. */
+.output{padding:38px 42px;box-shadow:0 3px 14px rgba(43,41,42,.04)}
+.output h3{
+  margin:44px 0 20px;padding:0;background:transparent;border-radius:0;
+  color:var(--slate);font-size:20px;text-transform:none;letter-spacing:-.02em;
+}
+.output h3:first-child{margin-top:0}
+.output h4{font-size:15px;line-height:1.45;letter-spacing:0;color:var(--slate)}
+.output p{font-size:14.5px;line-height:1.75;max-width:75ch}
+.output ul{border-top:1px solid var(--conc)}
+.output li{
+  padding:14px 12px;font-size:15px;line-height:1.7;border-bottom:1px solid var(--conc);
+  overflow-wrap:anywhere;
+}
+.output li::before{content:none}
+.output li:nth-child(even){background:#faf9f6}
+.output .scope-category{margin:0 0 26px;border:1px solid var(--mortar);border-radius:6px;overflow:hidden}
+.output .scope-category h4{margin:0;padding:14px 16px;background:var(--conc)}
+.output .scope-category ul{border-top:0}
+.output .scope-category li{padding:13px 16px}
+.output .scope-category li:last-child{border-bottom:0}
+.output .meta{gap:18px 28px;padding:20px;background:#faf9f6;border-radius:6px}
+.output .meta div{padding:0;border:0;line-height:1.65;overflow-wrap:anywhere}
+.output .meta b{font-size:11px;margin-bottom:5px}
+.output .scope-definition{color:#625e59;margin-bottom:22px}
+.output .respout li{align-items:flex-start;gap:20px;padding:16px 12px}
+.output .respout li::before{content:none}
+.output .respout li span{flex:1;min-width:0}
+.output .respout li em{
+  padding:4px 8px;background:var(--conc);border-radius:4px;font-size:11px;
+  color:var(--slate);letter-spacing:0;line-height:1.5;
+}
+.output .scope-allowance,.output .scope-milestone{
+  border:1px solid var(--mortar);border-radius:6px;padding:20px;margin-bottom:16px;
+  overflow-wrap:anywhere;
+}
+.output .scope-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.output .scope-card-top h4{margin:0;flex:1}
+.output .scope-amount,.output .scope-percent{font-family:var(--f-head);font-size:18px;font-weight:700;color:var(--slate);white-space:nowrap}
+.output .scope-facts{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin-top:18px}
+.output .scope-includes{grid-column:1/-1}
+.output .scope-facts dt{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6d6a66;margin-bottom:4px;font-weight:600}
+.output .scope-facts dd{font-size:14.5px;line-height:1.6;margin:0}
+.output .scope-terms{background:#faf9f6;padding:18px 20px;border-radius:6px;margin-top:20px}
+.output .scope-terms p+p{margin-top:14px}
+.output .scope-milestone p{margin-top:12px;color:#625e59}
+.output .empty{padding:14px 0;color:#6d6a66}
+@media(max-width:720px){
+  .output{padding:24px 16px}
+  .output h3{font-size:19px;margin-top:34px}
+  .output .meta{padding:16px;gap:16px}
+  .output li{font-size:14px;padding:13px 10px}
+  .output .scope-category li{padding:13px 14px}
+  .output .scope-card-top{flex-wrap:wrap;gap:10px}
+  .output .scope-card-top h4{flex-basis:100%}
+  .output .scope-facts{grid-template-columns:1fr;gap:14px}
+  .output .scope-allowance,.output .scope-milestone{padding:16px}
+  .output .respout li{flex-direction:column;gap:8px;padding:14px 10px}
+  .output .respout li em{margin-left:0}
+  .output .scope-terms{padding:16px}
+  .output .scope-amount,.output .scope-percent{white-space:normal}
+}
