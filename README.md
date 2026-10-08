@@ -1,7 +1,7 @@
 # Scope of Work Builder
 
 A free checkbox tool for real estate investors, by
-[RD Contracting Solutions, LLC](https://www.therdcompany.com) — GC-LICENSE #0465440426.
+[RD Contracting Solutions, LLC](https://www.therdcompany.com) | GC-LICENSE #0465440426.
 
 **Live tool:** https://radominguez2008.github.io/sow-builder/
 
@@ -26,7 +26,7 @@ construction draws. Unassigned and TBD responsibilities stay out of the output.
 
 ## Notes
 
-Runs entirely in the browser. Nothing is uploaded, stored, or tracked —
+Runs entirely in the browser. Nothing is uploaded, stored, or tracked;
 your scope never leaves your device. `standalone.html` is a single-file
 copy you can email or open offline.
 

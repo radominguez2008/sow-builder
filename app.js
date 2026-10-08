@@ -1,4 +1,4 @@
-/* RD Scope of Work Builder — no storage, no backend, no dependencies. */
+/* RD Scope of Work Builder: no storage, no backend, no dependencies. */
 (function () {
   'use strict';
 
@@ -366,7 +366,7 @@
       var readiness = {
         'Flip / resale': 'Resale-ready closeout',
         'Rental hold': 'Rental-ready closeout',
-        'BRRRR — refinance and hold': 'Rental-ready rehab closeout; work documentation delivered for refinance review',
+        'BRRRR: refinance and hold': 'Rental-ready rehab closeout; work documentation delivered for refinance review',
         'Owner occupy': 'Owner move-in closeout'
       };
       if (readiness[strategy]) { g.label = readiness[strategy] + ': ' + base.label; }
@@ -488,7 +488,7 @@
     n.querySelector('b').textContent = rounded + '%';
     n.classList.toggle('bad', rounded > 100);
     n.querySelector('span').textContent = rounded > 100
-      ? 'Over 100 percent — fix before you send this'
+      ? 'Over 100 percent: fix before you send this'
       : 'Draw percentages assigned';
   }
 
@@ -510,7 +510,7 @@
     C.allowances.items.forEach(function (item, ai) {
       var a = S.allow[ai];
       if (!a || !a.on) { return; }
-      lines.push(item + (a.amt.trim() ? ' — $' + a.amt.trim() : ' — amount not set') +
+      lines.push(item + (a.amt.trim() ? ': $' + a.amt.trim() : ': amount not set') +
         '; includes: ' + ((a.covers || '').trim() || item) +
         '; selection deadline: ' + (a.deadline || 'NOT SET') +
         '; needed on site by: ' + (a.needed || 'NOT SET'));
@@ -523,7 +523,7 @@
     for (var i = 0; i < drawCount; i++) {
       var g = S.gates[i];
       if (!g || !g.on) { continue; }
-      lines.push('D' + (i + 1) + ' — ' + (g.categories.length ? categorySummary(g) : 'CATEGORIES NOT SET') +
+      lines.push('D' + (i + 1) + ': ' + (g.categories.length ? categorySummary(g) : 'CATEGORIES NOT SET') +
         ': ' + (g.label.trim() || 'COMPLETION REQUIREMENT NOT SET') +
         (g.pct ? ' (' + g.pct + '%)' : ' (PERCENTAGE NOT SET)'));
     }
@@ -552,7 +552,7 @@
     for (var i = 0; i < drawCount; i++) {
       var g = S.gates[i];
       if (!g || !g.on) { continue; }
-      h += '<article class="scope-milestone"><div class="scope-card-top"><h4>D' + (i + 1) + ' — ' +
+      h += '<article class="scope-milestone"><div class="scope-card-top"><h4>D' + (i + 1) + ': ' +
         esc(g.categories.length ? categorySummary(g) : 'CATEGORIES NOT SET') +
         '</h4><b class="scope-percent">' + esc(g.pct ? g.pct + '%' : 'PERCENTAGE NOT SET') +
         '</b></div><p>' + esc(g.label.trim() || 'COMPLETION REQUIREMENT NOT SET') + '</p></article>';

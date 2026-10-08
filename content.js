@@ -26,7 +26,7 @@ window.RD_CONTENT = {
       "options": [
         "Flip / resale",
         "Rental hold",
-        "BRRRR — refinance and hold",
+        "BRRRR: refinance and hold",
         "Owner occupy",
         "Wholesale / assign"
       ]
@@ -100,7 +100,7 @@ window.RD_CONTENT = {
     },
     {
       "n": 3,
-      "name": "MEPs — Mechanical / Electrical / Plumbing",
+      "name": "MEPs: Mechanical / Electrical / Plumbing",
       "hint": "State the required pass: inspected and approved to final.",
       "lines": [
         "Electrical service and panel are adequate for the finished house and pass inspection",
@@ -131,7 +131,7 @@ window.RD_CONTENT = {
     {
       "n": 4,
       "name": "Framing, Insulation & Drywall",
-      "hint": "State the finish level and the result — level, square, ready for paint.",
+      "hint": "State the finish level and the result: level, square, ready for paint.",
       "lines": [
         "All structural repairs are engineered where required and the stamped plan is delivered",
         "Floor system is level, solid, and free of bounce and squeaks",
@@ -177,7 +177,7 @@ window.RD_CONTENT = {
     {
       "n": 6,
       "name": "Baths",
-      "hint": "State the finished result according to the finish schedules. The RD standard is— plumber furnishes valves and the water heater, Owner furnishes toilets, vanities, mirrors, and faucets.",
+      "hint": "State the finished result according to the finish schedules. The RD standard is: plumber furnishes valves and the water heater, Owner furnishes toilets, vanities, mirrors, and faucets.",
       "lines": [
         "Every bath is fully functional with hot water, working drains, and no leaks",
         "Shower and tub areas are waterproofed and pass a water test before tile",
@@ -370,9 +370,9 @@ window.RD_CONTENT = {
   "rules": {
     "hint": "The rules that stop most of the bleeding. Check the ones going in your scope. These are the RD Contractor Communication Code, written down.",
     "lines": [
-      "Clear scope of work first — written, signed, and dated before anyone swings a hammer",
+      "Clear scope of work first: written, signed, and dated before anyone swings a hammer",
       "One point of contact on each side. Nobody else gives direction.",
-      "Update meetings are pre-scheduled — daily, weekly, or by milestone. Pick one and hold it.",
+      "Update meetings are pre-scheduled: daily, weekly, or by milestone. Pick one and hold it.",
       "Every change order is written and signed by both parties before the work starts. No verbal agreements. Ever.",
       "Payment only on work completed and in place. Never front-loaded.",
       "Minimum 15 days between draw requests",
